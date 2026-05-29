@@ -1,0 +1,64 @@
+# 服务器配置
+server:
+  port: 8080
+
+# Spring框架核心配置
+spring:
+  application:
+    name: repair-system
+  # 数据库连接配置（请修改为你的实际配置）
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/repair_system?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: your_username
+    password: your_password
+
+# MyBatis-Plus ORM框架配置
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+  mapper-locations: classpath*:/mapper/**/*.xml
+
+# JWT令牌认证配置（请修改为你的实际密钥）
+jwt:
+  secret: your-jwt-secret-key
+  expiration: 8640000000
+
+# 阿里云OSS对象存储配置（请修改为你的实际配置）
+aliyun:
+  oss:
+    endpoint: oss-cn-beijing.aliyuncs.com
+    access-key-id: your-access-key-id
+    access-key-secret: your-access-key-secret
+    bucket-name: your-bucket-name
+    url-prefix: https://your-bucket-name.oss-cn-beijing.aliyuncs.com/
+
+# Knife4j API文档配置
+knife4j:
+  enable: true
+  openapi:
+    group: 
+      default:
+        group-name: 全部接口
+        api-rule:
+          include-path-patterns:
+            - /api/**
+      student:
+        group-name: 学生接口
+        api-rule:
+          include-path-patterns:
+            - /api/student/**
+      repairman:
+        group-name: 维修人员接口
+        api-rule:
+          include-path-patterns:
+            - /api/repairman/**
+      admin:
+        group-name: 管理员接口
+        api-rule:
+          include-path-patterns:
+            - /api/admin/**
